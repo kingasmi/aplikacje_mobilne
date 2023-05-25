@@ -1,5 +1,5 @@
 package com.example.lab8
-//kurs  3
+//kurs  3.1
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
