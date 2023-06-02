@@ -35,6 +35,36 @@ import com.example.jetnote.model.Note
 import java.time.format.DateTimeFormatter
 
 @Composable
+fun NoteRow(
+    modifier: Modifier = Modifier,
+    note: Note,
+    onNoteClicked: (Note) -> Unit
+) {
+    Surface(
+        modifier
+            .padding(4.dp)
+            .clip(RoundedCornerShape(topEnd = 33.dp, bottomEnd = 33.dp))
+            .fillMaxWidth(),
+        color = Color(0xFF03A9F4),
+        elevation = 6.dp
+    ) {
+        Column(
+            modifier
+                .clickable { onNoteClicked(note) }
+                .padding(horizontal = 14.dp, vertical = 6.dp),
+            horizontalAlignment = Alignment.Start
+        ) {
+            Text(text = note.title, style = MaterialTheme.typography.subtitle2)
+            Text(text = note.description, style = MaterialTheme.typography.subtitle1)
+            Text(
+                text = note.entryDate.format(DateTimeFormatter.ofPattern("EEE, d MMM")),
+                style = MaterialTheme.typography.caption
+            )
+        }
+    }
+}
+
+@Composable
 fun NoteScreen (
     notes: List<Note>,
     onAddNotes: (Note) -> Unit,
@@ -52,11 +82,11 @@ fun NoteScreen (
         TopAppBar(
             title = { Text(text =  "jetnote")},
             actions = {
-            Icon(
-                imageVector = Icons.Rounded.Notifications,
-                contentDescription = "Icon"
-            )
-        }, backgroundColor = Color(0xFF4CAF50))
+                Icon(
+                    imageVector = Icons.Rounded.Notifications,
+                    contentDescription = "Icon"
+                )
+            }, backgroundColor = Color(0xFF4CAF50))
         //CONTENT
         Column (
             modifier= Modifier.fillMaxWidth(),
@@ -93,36 +123,6 @@ fun NoteScreen (
                 NoteRow(note = note, onNoteClicked = {
                     onRemoveNote(note) })
             }
-        }
-    }
-}
-
-@Composable
-fun NoteRow(
-    modifier: Modifier = Modifier,
-    note: Note,
-    onNoteClicked: (Note) -> Unit
-) {
-    Surface(
-        modifier
-            .padding(4.dp)
-            .clip(RoundedCornerShape(topEnd = 33.dp, bottomEnd = 33.dp))
-            .fillMaxWidth(),
-        color = Color(0xFF03A9F4),
-        elevation = 6.dp
-    ) {
-        Column(
-            modifier
-                .clickable { onNoteClicked(note) }
-                .padding(horizontal = 14.dp, vertical = 6.dp),
-            horizontalAlignment = Alignment.Start
-        ) {
-            Text(text = note.title, style = MaterialTheme.typography.subtitle2)
-            Text(text = note.description, style = MaterialTheme.typography.subtitle1)
-            Text(
-                text = note.entryDate.format(DateTimeFormatter.ofPattern("EEE, d MMM")),
-                style = MaterialTheme.typography.caption
-            )
         }
     }
 }

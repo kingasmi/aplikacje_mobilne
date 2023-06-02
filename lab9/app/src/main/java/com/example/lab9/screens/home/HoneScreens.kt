@@ -20,7 +20,7 @@ import com.example.lab9.widgets.MovieRow
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreens (navController: NavController){
+fun HomeScreen(navController: NavController){
     Scaffold(
         topBar = {
             TopAppBar(backgroundColor = Color.Magenta, elevation = 5.dp) {

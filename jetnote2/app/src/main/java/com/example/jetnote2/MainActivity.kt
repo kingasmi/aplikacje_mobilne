@@ -16,7 +16,6 @@ import com.example.jetnote2.screen.NoteViewModel
 import com.example.jetnote2.ui.theme.Jetnote2Theme
 import androidx.lifecycle.viewmodel.compose.viewModel
 
-
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +37,8 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun NotesApp(noteViewModel: NoteViewModel= viewModel()){
     val notesList=noteViewModel.getAllNotes()
-    NoteScreen(notes=notesList, onAddNotes={
+    NoteScreen(notes=notesList,
+        onAddNotes={
         noteViewModel.addNote(it)
     }, onRemoveNote={
         noteViewModel.removeNote(it)
