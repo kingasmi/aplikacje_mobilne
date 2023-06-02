@@ -1,9 +1,6 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
-
 package com.example.lab9.screens.detals
 
 import android.annotation.SuppressLint
-import android.widget.Space
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -19,14 +16,13 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Divider
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.Icon
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Card
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -40,10 +36,11 @@ import com.example.lab9.model.Movie
 import com.example.lab9.model.getMovies
 import com.example.lab9.widgets.MovieRow
 
+
 @SuppressLint("UnusedMaterialScaffoldPaddingParametr")
 @Composable
-fun DetailsScreen (navController: NavController, movieId: Int?){
-    val newmovieList = getMovies().filter{ movie -> movie.id == movieId }
+fun DetailsScreen (navController: NavController, movieId: Int?) {
+    val newmovieList = getMovies().filter { movie -> movie.id == movieId }
     Scaffold(
         topBar = {
             TopAppBar(backgroundColor = Color.Transparent, elevation = 5.dp) {
@@ -61,9 +58,10 @@ fun DetailsScreen (navController: NavController, movieId: Int?){
             }
         }
     ) {
-        Surface(modifier = Modifier
-            .fillMaxHeight()
-            .fillMaxWidth()
+        Surface(
+            modifier = Modifier
+                .fillMaxHeight()
+                .fillMaxWidth()
         ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -73,40 +71,34 @@ fun DetailsScreen (navController: NavController, movieId: Int?){
                 Spacer(modifier = Modifier.height(8.dp))
                 Divider()
                 Text(text = "Movie Images")
-                HorizintalScrollableImageView(newmovieList = newmovieList)
+                HorizintalScrollableImageView(newmovieList)
             }
         }
     }
 }
 
 @Composable
-private fun HorizintalScrollableImageView(newmovieList: List<Movie>){
-    LazyRow{
+fun HorizintalScrollableImageView(newmovieList: List<Movie>) {
+    LazyRow {
         items(newmovieList[0].images)
-        {
-            image ->
+        { image ->
             Card(
                 modifier = Modifier
                     .padding(12.dp)
                     .size(240.dp),
                 elevation = 5.dp
-        )
-        {
-            val painter = rememberAsyncImagePainter(image)
-            val state = painter.state
-            if(state is AsyncImagePainter.State.Success){
-                //Perform the transition animation.
-            }
-            Image(
-                painter = painter,
-                contentDescription = "Movvie Poster"
             )
-//            Image(
-//                painter = rememberAsyncImagePainter(data = image),
-//                contentDescription = "Movvie Poster"
-//            )
-
-        }
+            {
+                val painter = rememberAsyncImagePainter(image)
+                val state = painter.state
+                if (state is AsyncImagePainter.State.Success) {
+                    //Perform the transition animation.
+                }
+                Image(
+                    painter = painter,
+                    contentDescription = "Movvie Poster"
+                )
+            }
         }
     }
 }

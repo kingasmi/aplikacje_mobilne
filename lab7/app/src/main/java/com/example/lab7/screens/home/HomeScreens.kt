@@ -26,8 +26,8 @@ fun HomeScreens (navController: NavController){
                 /*Top app bar content*/
             }
         },
-    ) { it->
-        Column(modifier = Modifier
+    ) { it->Column(
+        modifier = Modifier
             .padding(it))
         { MainContent(navController=navController)
             //widok

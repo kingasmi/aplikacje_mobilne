@@ -57,8 +57,8 @@ fun MovieRow(movie: String, onItemClick:(String) -> Unit = {}) {
         Row(verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Start) {
             Surface(modifier = Modifier
-                .padding(12.dp)
-                .size(100.dp),
+                    .padding(12.dp)
+                    .size(100.dp),
                 shape = RectangleShape,
                 tonalElevation = 4.dp) {
                 Icon(imageVector = Icons.Default.AccountBox, contentDescription = "Movie image")

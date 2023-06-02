@@ -45,6 +45,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.*
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
@@ -81,7 +82,8 @@ fun MovieRow(movie: Movie = getMovies()[0], onItemClick: (String) -> Unit = {}) 
                 val painter = rememberAsyncImagePainter(
                     model = ImageRequest.Builder(LocalContext.current)
                         .data(movie.images[0])
-                        .size(Size.ORIGINAL).transformations(CircleCropTransformation())
+                        .size(coil.size.Size.ORIGINAL)
+                       .transformations(CircleCropTransformation())
                         .crossfade(false) //set the target size to load the image at.
                         .build()
                 )

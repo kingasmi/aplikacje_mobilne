@@ -23,10 +23,10 @@ fun MovieNavigation () {
             MovieScreens.DetailsScreen.name + "/{movie}",
             arguments = listOf(navArgument(name = "movie") { type = NavType.StringType })
         )
-        { backStackyEntey ->
+        { backStackEntry ->
             DetailsScreen(
                 navController = navController,
-                backStackyEntey.arguments?.getInt("movie")
+                backStackEntry.arguments?.getInt("movie")
             )
         }
 
