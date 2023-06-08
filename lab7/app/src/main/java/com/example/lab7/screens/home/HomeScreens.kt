@@ -16,45 +16,41 @@ import androidx.navigation.NavController
 import com.example.lab7.MovieRow
 import com.example.lab7.navigation.MovieScreens
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreens (navController: NavController){
-    Scaffold(
+fun HomeScreens(navController: NavController) {
+    androidx.compose.material.Scaffold(
         topBar = {
             TopAppBar(backgroundColor = Color.Magenta, elevation = 5.dp) {
-                Text(text = "Movies TopAppBar")
-                /*Top app bar content*/
+                androidx.compose.material.Text(text = "Movies TopAppBar")
             }
         },
-    ) { it->Column(
-        modifier = Modifier
-            .padding(it))
-        { MainContent(navController=navController)
-            //widok
-        }
-    }
-}
-
-@Composable
-fun MainContent(navController: NavController,
-                moviesList: List<String> = listOf(
-                    "Avatar",
-                    "555",
-                    "Harry Potter",
-                    "Life",
-                    "Lolek",
-                    "Bolek",
-                    "Krecik"
-                )
-){
-    Column(modifier = Modifier.padding(12.dp)) {
-        LazyColumn{
-            items(items = moviesList){
-                MovieRow(movie = it){
-                        movie ->navController.navigate(route = MovieScreens.DetailsScreen.name+"/$movie")
-                }
+        content = {
+            Column(modifier = Modifier.padding(it)) {
+                MainContent(navController = navController)
             }
         }
+    )
+}
 
+
+@Composable
+fun MainContent(
+    navController: NavController,
+    moviesList: List<String> = listOf(
+        "Avatar",
+        "555",
+        "Harry Potter",
+        "Life",
+        "Lolek",
+        "Bolek",
+        "Krecik"
+    )
+) {
+    LazyColumn {
+        items(items = moviesList) { movie ->
+            MovieRow(movie = movie) { movie2 ->
+                navController.navigate(route = "${MovieScreens.DetailsScreen.name}/$movie2")
+            }
+        }
     }
 }
