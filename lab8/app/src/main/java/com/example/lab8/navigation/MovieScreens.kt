@@ -1,7 +1,5 @@
 package com.example.lab8.navigation
 
-import java.lang.IllegalArgumentException
-
 enum class MovieScreens {
     HomeScreen,
     DetailsScreen;

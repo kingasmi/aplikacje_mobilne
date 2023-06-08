@@ -5,7 +5,8 @@ enum class MovieScreens {
     DetailsScreen;
     companion object{
         fun fromRoute(route:String?):MovieScreens=
-            when(route?.substringBefore(delimiter = "/")) {
+            when(route?.substringBefore(delimiter = "/"))
+            {
                 HomeScreen.name -> HomeScreen
                 DetailsScreen.name -> DetailsScreen
                 null -> HomeScreen
