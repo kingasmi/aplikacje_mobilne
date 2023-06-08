@@ -1,6 +1,7 @@
 package com.example.lab9.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -11,26 +12,24 @@ import com.example.lab9.screens.home.HomeScreen
 import com.example.lab9.navigation.MovieNavigation
 
 
+@Preview
 @Composable
-fun MovieNavigation () {
+fun MovieNavigation() {
     val navController = rememberNavController()
-    NavHost(
-        navController = navController,
-        startDestination = MovieScreens.HomeScreen.name
-    ) {
+    NavHost(navController = navController, startDestination = MovieScreens.HomeScreen.name) {
         composable(MovieScreens.HomeScreen.name) {
             HomeScreen(navController = navController)
         }
         composable(
-            MovieScreens.DetailsScreen.name + "/{movie}",
-            arguments = listOf(navArgument(name = "movie") { type = NavType.StringType })
-        )
-        { backStackEntry ->
-            DetailsScreen(
-                navController = navController,
-                backStackEntry.arguments?.getInt("movie")
+            MovieScreens.DetailsScreen.name+"/{move}",
+            arguments = listOf(
+                navArgument(name="move") {
+                    type = NavType.IntType
+                }
             )
+        ) {
+                backStackEntry ->
+            DetailsScreen(navController = navController, backStackEntry.arguments?.getInt("move"))
         }
-
     }
 }
