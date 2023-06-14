@@ -34,7 +34,6 @@ import com.example.jetnote3.componets.NoteInputText
 import com.example.jetnote3.data.NotesDataSource
 import com.example.jetnote3.model.Note
 import com.example.jetnote3.util.formatDate
-import java.time.format.DateTimeFormatter
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
